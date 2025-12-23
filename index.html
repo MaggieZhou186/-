@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>股票管理工具 | Stock OS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+            <div style="text-align: left;">
+                <h1>Stock Management OS</h1>
+                <p>洞察核心机制，掌握投资节奏</p>
+            </div>
+            <button id="import-btn" class="import-btn">上传东财导出文件</button>
+            <input type="file" id="file-upload" accept=".csv,.txt" style="display: none;">
+        </header>
+
+        <section id="dashboard" class="dashboard">
+            <div class="summary-card">
+                <label>总资产 (Total Assets)</label>
+                <div id="total-assets" class="value">0.00</div>
+                <div id="sync-status" class="sync-status">正在同步数据...</div>
+            </div>
+            <div class="summary-card">
+                <label>证券市值</label>
+                <div id="total-market-value" class="value">0.00</div>
+            </div>
+            <div class="summary-card">
+                <label>可用资金</label>
+                <div id="available-cash" class="value">0.00</div>
+            </div>
+            <div class="summary-card">
+                <label>总结盈亏</label>
+                <div id="total-profit" class="value">0.00</div>
+                <button onclick="refreshPrices()" class="refresh-btn">🔄 刷新</button>
+            </div>
+        </section>
+
+        <section id="industry-analysis" class="industry-section">
+            <h2 class="section-title">行业盈亏分布 <span>(Industry Analysis)</span></h2>
+            <div id="industry-grid" class="industry-grid">
+                <!-- Industry blocks will be rendered here -->
+            </div>
+        </section>
+
+        <section id="owned-stocks">
+            <h2 class="section-title">我的持仓 <span>(Core Positions)</span></h2>
+            <div id="owned-grid" class="owned-grid">
+                <!-- Cards will be rendered here -->
+            </div>
+        </section>
+
+        <section id="watchlist">
+            <h2 class="section-title">关注待机 <span>(Watchlist)</span></h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>股票名称</th>
+                            <th>关注理由</th>
+                            <th>等待信号</th>
+                            <th>拟入金额</th>
+                            <th style="width: 50px">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="watchlist-body">
+                        <!-- Table rows will be rendered here -->
+                    </tbody>
+                </table>
+            </div>
+            <button class="add-btn" onclick="addToWatchlist()">+ 添加关注股票</button>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
